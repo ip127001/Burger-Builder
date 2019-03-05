@@ -10,14 +10,17 @@ const controls = [
     { label: 'Tikki', type: 'tikki'}
 ]
 
-const buildControls = (props) => (
-    <div className={classes.BuildControls}>
+const buildControls = (props) => {
+    return <div className={classes.BuildControls}>
         {controls.map(ctrl => (
             <BuildControl 
                 key={ctrl.label} 
                 label={ctrl.label}
-                added={() => props.ingredientAdded(ctrl.type)} />
+                added={() => props.ingredientAdded(ctrl.type)}
+                removed={() => props.ingredientRemoved(ctrl.type)} 
+                disable={props.disabled[ctrl.type]}/>
         ))};
     </div>
-);
+};
+
 export default buildControls;
