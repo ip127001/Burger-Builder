@@ -1,11 +1,12 @@
 import React from 'react';
 
 import Aux from '../../../hoc/Aux';
+import Button from '../../UI/Button/Button';
 
 const orderSummary = ( props ) => {
     const ingredientsList = Object.keys(props.ingredients)
-        .map(key => {
-            return <li><span style={{textTransform: 'capitalize'}}>{key}</span> : {props.ingredients[key]}</li>
+        .map((key,i) => {
+            return <li key={key}><span style={{textTransform: 'capitalize'}}>{key}</span> : {props.ingredients[key]}</li>
         });
 
     return (
@@ -15,9 +16,10 @@ const orderSummary = ( props ) => {
             <ul>
                 {ingredientsList}
             </ul>
+            <p>Total Price: {props.price} </p>
             <p>Continue to Checkout?</p>
-            <button>Cancel</button>
-            <button>Proceed</button>
+            <Button btnType="Danger" clicked={props.purchaseCancelled}>Cancel</Button>
+            <Button btnType="Success" clicked={props.purchaseContinued}>Proceed</Button>
         </Aux>
     );
 }
