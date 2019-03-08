@@ -4,10 +4,7 @@ import Aux from '../../../hoc/Aux';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component{
-    componentWillUpdate() {
-        console.log('[Ordersummary] WillUpdate');
-    }
-
+    // This could be a functional component with no class 
     ingredientsList = Object.keys(this.props.ingredients)
         .map((key,i) => {
             return <li key={key}><span style={{textTransform: 'capitalize'}}>{key}</span> : {this.props.ingredients[key]}</li>
