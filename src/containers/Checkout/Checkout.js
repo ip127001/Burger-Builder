@@ -25,6 +25,7 @@ class Checkout extends Component {
             ingredients: ingredients,
             totalPrice: price
         });
+        console.log('checkout.js', this.state.ingredients);
     }
 
     // componentDidUpdate() {
