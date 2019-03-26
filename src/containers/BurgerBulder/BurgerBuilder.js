@@ -20,15 +20,15 @@ class BurgerBuilder extends Component {
         error: false
     }
 
-    componentDidMount() {
-        axios.get('https://burger-builder-react-2d64c.firebaseio.com/ingredients.json')
-        .then(response => {
-            this.setState({ingredients: response.data});
-        })
-        .catch(err => {
-            this.setState({error: true})
-        });
-    }
+    // componentDidMount() {
+    //     // axios.get('https://burger-builder-react-2d64c.firebaseio.com/ingredients.json')
+    //     // .then(response => {
+    //     //     this.setState({ingredients: response.data});
+    //     // })
+    //     // .catch(err => {
+    //     //     this.setState({error: true})
+    //     // });
+    // }
 
     updatePurchaseState = (ingredients) => {
         const totalIngredients = Object.keys(ingredients)     //['cheese', 'tikki', 'cabbage', 'salad']
@@ -51,17 +51,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseProceedHandler = () => {
-        const queryParams = [];
-        for (let i in this.props.ings) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ings[i]));
-        }
-        queryParams.push('price=' + this.props.price);
-        const queryString = queryParams.join('&');
-        console.log(queryString);
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+        this.props.history.push('/checkout');
     }
 
     render() {
