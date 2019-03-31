@@ -7,7 +7,7 @@ import classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler';
-import { burgerPurchase } from '../../../store/actions/index';
+import * as action from '../../../store/actions/index';
 
 class ContactData extends Component {
     state = {
@@ -157,7 +157,8 @@ class ContactData extends Component {
         const order = {
             ingredients: this.props.ings,
             price: this.props.price,
-            orderData: formData
+            orderData: formData,
+            userId: this.props.userId
         }
         this.props.onOrderBurger(order, this.props.token);
     }
@@ -203,13 +204,14 @@ const mapStateToProps = state => {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
         loading: state.order.loading,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurger: (orderData, token) => dispatch(burgerPurchase(orderData, token))
+        onOrderBurger: (orderData, token) => dispatch(action.burgerPurchase(orderData, token))
     }
 }
 

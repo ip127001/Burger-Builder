@@ -34,7 +34,6 @@ export const authLogout = () => {
 export const checkAuthTimeout = (expirationTime) => {
     return dispatch => {
         setTimeout(() => {
-            console.log('autoLogout', expirationTime);
             dispatch(authLogout());
         }, expirationTime * 1000);
     }
@@ -57,7 +56,6 @@ export const auth = (email, password, isSignup) => {
 
         axios.post(url, authObj)
             .then(response => {
-                console.log(response);
                 let date = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('expirationDate', date);
@@ -72,7 +70,7 @@ export const auth = (email, password, isSignup) => {
     }
 }
 
-export const setAutoRedirectPath = (path) => {
+export const setAuthRedirectPath = (path) => {
     return {
         type: actionTypes.SET_AUTO_REDIRECT_PATH,
         path: path
