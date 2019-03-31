@@ -11,7 +11,6 @@ const controls = [
 ]
 
 const buildControls = (props) => {
-    console.log(props.purchasable);
     return <div className={classes.BuildControls}>
         <p>totalPrice: <b>{props.totalPrice.toFixed(2)}</b></p>
         {controls.map(ctrl => (
@@ -27,7 +26,6 @@ const buildControls = (props) => {
             disabled={props.purchasable}
             onClick={props.ordered}>{props.isAuth ? 'ORDER NOW' : 'SIGN UP TO ORDER'}</button>
     </div>
-
-        }
+}
 
 export default buildControls;
