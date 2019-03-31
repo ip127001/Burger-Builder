@@ -63,3 +63,10 @@ export const auth = (email, password, isSignup) => {
             });
     }
 }
+
+export const setAutoRedirectPath = (path) => {
+    return {
+        type: actionTypes.SET_AUTO_REDIRECT_PATH,
+        path: path
+    }
+}
