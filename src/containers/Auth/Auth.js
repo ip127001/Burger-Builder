@@ -88,6 +88,22 @@ class Auth extends Component {
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+        this.setState(prevState => {
+            return {controls: {
+                email: {
+                    elementConfig: {
+                        placeholder: 'Your Mail'
+                    },
+                    value: ''
+                },
+                password: {
+                    elementConfig: {
+                        placeholder: 'Your password'
+                    },
+                    value: ''
+                }
+            }}
+        })
     }
 
     switchAuthHandler = () => {
