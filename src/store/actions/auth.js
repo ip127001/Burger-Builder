@@ -64,7 +64,6 @@ export const auth = (email, password, isSignup) => {
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
             })
             .catch(err => {
-                console.log(err.response.data.error);
                 dispatch(authFail(err.response.data.error.message));
             });
     }
@@ -79,19 +78,16 @@ export const setAuthRedirectPath = (path) => {
 
 export const authCheckState = () => {
     return dispatch => {
-        console.log('[authCheckState]')
         const token = localStorage.getItem('token');
         if (!token) {
             dispatch(authLogout());
         } else {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
             if (expirationDate <= new Date()) {
-                console.log('expirationData', expirationDate);
                 dispatch(authLogout());
             } else {
                 const userId = localStorage.getItem('userId');
                 const expirationTime = (expirationDate.getTime() - new Date().getTime()) / 1000;
-                console.log('expirationTime', expirationTime);
                 dispatch(checkAuthTimeout(expirationTime));
                 dispatch(authSuccess(userId));
             }

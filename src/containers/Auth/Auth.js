@@ -105,8 +105,7 @@ class Auth extends Component {
                 <p>{this.props.error.message}</p>
             );
         }
-
-        console.log('isAuth', this.props.isAuthenticated);
+        
         let authRedirect = null;
         if (this.props.isAuthenticated) {
             authRedirect = <Redirect to={this.props.authRedirectPath}/>
